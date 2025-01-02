@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, MessageSquare } from 'lucide-react';
 import { CommentForm } from '@/app/components/CommentForm';
@@ -32,9 +33,11 @@ export function BlogPost({ post }: BlogPostProps) {
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to posts
         </Link>
 
-        <img
+        <Image
           src={post.image}
           alt={post.title}
+          width={800}
+          height={400}
           className="w-full h-[400px] object-cover rounded-lg mb-8"
         />
 
