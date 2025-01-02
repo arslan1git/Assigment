@@ -1,8 +1,15 @@
 import { posts } from '@/data/posts';
 import { BlogPost } from './BlogPost';
 
-export default function Page({ params }: { params: { id: string } }) {
-  const post = posts.find((p) => p.id === Number(params.id));
+interface PageProps {
+  params: { id: string };
+}
+
+export default async function Page({ params }: PageProps) {
+  const postId = Number(params.id);
+
+  // Ensure the ID is correctly parsed and used to find the post
+  const post = posts.find((p) => p.id === postId);
 
   if (!post) {
     return (
@@ -15,7 +22,8 @@ export default function Page({ params }: { params: { id: string } }) {
   return <BlogPost post={post} />;
 }
 
-export function generateStaticParams() {
+// Generate static params for the dynamic routes
+export async function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
   }));
