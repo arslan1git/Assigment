@@ -5,7 +5,7 @@ interface PageProps {
   params: { id: string };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { id: string } }) {
   const postId = Number(params.id);
 
   // Ensure the ID is correctly parsed and used to find the post
@@ -22,7 +22,6 @@ export default async function Page({ params }: PageProps) {
   return <BlogPost post={post} />;
 }
 
-// Generate static params for the dynamic routes
 export async function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
